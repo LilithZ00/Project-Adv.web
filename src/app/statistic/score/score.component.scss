@@ -1,0 +1,43 @@
+.card {
+    padding: 40px;
+    background-color: rgb(183, 231, 255);
+    border-radius: 10px;
+    margin-top: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 90%; /* ความกว้างของการ์ดเป็น 90% ของพื้นที่ตรงกลาง */
+        max-width: 600px; /* สูงสุดไม่เกิน 600px */
+        margin: 0 auto; /* จัดการความกว้างตรงกลาง */
+        max-height: 600px; /* ปรับความสูงสูงสุดของการ์ดตามที่ต้องการ */
+        overflow-y: auto;
+}
+
+.img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10%;
+    object-fit: cover;
+}
+.bt-g{
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    border: 2px solid #2f2f2f; 
+    margin-top: 10px;
+    border-radius: 20px;
+}
+
+.number {
+    padding: 20px;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.caption {
+    margin: 0;
+    font-size: 1rem;
+}
+
+.score {
+    font-size: 1.2rem;
+    font-weight: bold;
+}

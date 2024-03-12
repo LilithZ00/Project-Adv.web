@@ -1,0 +1,80 @@
+.div {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    border-radius:100% ;
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+p{
+    font-size: 30px;
+}
+
+body{
+    filter: blur(50px);
+}
+
+.avatar{
+    width: 50px;
+    height: 50px;
+    border-radius:100% ;
+    
+}
+
+.flex-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    height: 40px;
+    background-color: rgb(112, 179, 255);
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .btn-dropdown {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(112, 179, 255);
+    color: #000000;
+    cursor: pointer;
+    font-size: 20px;
+    
+  }
+  
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: rgb(133, 188, 252);
+    min-width: 185px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    text-align: center;
+    border-radius:10px;
+    right: 0; /* ย้าย dropdown ไปทางขวา */
+  }
+  
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .dropdown-content a:hover {
+    background-color: rgb(88, 166, 255);
+    border-radius:10px ;
+  }
+  
+  .dropdown:hover .dropdown-content {
+    display: block;
+  }
+

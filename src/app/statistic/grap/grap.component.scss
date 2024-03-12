@@ -1,0 +1,11 @@
+.card{
+    background-color: rgb(183, 231, 255);
+    border-radius: 10px;
+    height: 750px;
+}
+
+body {
+    max-height: 100px; /* กำหนดความสูงของ body เป็น 100% ของ viewport height */
+    margin: 0; /* ลบการขยับขอบของ body */
+    padding: 0; /* ลบการเว้นระยะขอบของ body */
+  }

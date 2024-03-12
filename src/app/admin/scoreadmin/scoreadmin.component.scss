@@ -1,0 +1,18 @@
+.card {
+    padding: 40px;
+    background-color: rgb(183, 231, 255);
+    border-radius: 10px;
+    margin-top: 100px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    width: 90%; /* ความกว้างของการ์ดเป็น 90% ของพื้นที่ตรงกลาง */
+        max-width: 500px; /* สูงสุดไม่เกิน 600px */
+        margin: 0 auto; /* จัดการความกว้างตรงกลาง */
+        max-height: 600px; /* ปรับความสูงสูงสุดของการ์ดตามที่ต้องการ */
+        overflow-y: auto;
+}
+
+.img{
+    width: 25%;
+    height: 25%;
+    border-radius: 100%;
+}

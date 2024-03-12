@@ -1,0 +1,60 @@
+.card{
+    background-color: rgba(183, 231, 255, 0.575) ;
+    padding: 20px;
+    border-radius: 30px;
+}
+
+.img-edit{
+    width: 20%;
+    border-radius: 20px;
+}
+
+input {
+    width: 70%;
+    padding: 8px;
+    box-sizing: border-box;
+    border-radius: 20px;
+    border: 0px;
+}
+
+.nameInput{
+    opacity: 0.5; 
+    margin-left: 10px;
+    margin-bottom: 0px;
+}
+
+input[type="text"],[type="url"]{
+    padding-left: 15px;
+  }
+
+.btn{
+    margin-top: 25px;
+    width: 100px;
+    padding: 10px 20px;
+    margin-right: 87px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(125, 127, 241);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: rgb(117, 92, 214);
+}
+
+.btn-delete{
+    margin-top: 25px;
+    width: 100px;
+    padding: 10px 20px;
+    margin-right: 87px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(255, 65, 65);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button.btn-delete:hover {
+    background-color: rgb(255, 48, 48);
+}

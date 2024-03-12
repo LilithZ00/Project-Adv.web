@@ -1,0 +1,45 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between; /* เปลี่ยนจาก align-items เป็น justify-content */
+    text-align: center;
+    height: 100vh;
+    // background-color: rgb(150, 220, 255);
+    background-image: url('https://mods.store.gx.me/mod/d4b17492-4443-4d3d-8656-6fe8324d18a8/cover/6387d777-69d3-403b-adaf-63eafc6d141b?fd40a4b8b151c4e432106576187d03c9');
+    padding: 20px;
+    
+
+}
+
+.card {
+    background-color: rgba(183, 231, 255, 0.575);
+    padding: 20px;
+    border-radius: 30px;
+    display: flex;
+}
+
+.img-avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 20px;
+    cursor: pointer;
+}
+
+.btn{
+    margin-top: 25px;
+    width: 100px;
+    padding: 10px 20px;
+    margin-left: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(125, 127, 241);
+    color: #ffffff;
+    cursor: pointer;
+}
+
+button.btn:hover {
+    background-color: rgb(117, 92, 214);
+}

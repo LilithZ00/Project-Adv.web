@@ -1,0 +1,17 @@
+<div style="display: flex; justify-content: center;">
+    <div class="card-btn">
+        <button class="back-btn" routerLink="/login">&lt; Back</button>
+    </div>
+    <div class="card">
+        <p class="headName">Register</p>
+        <p class="nameInput">Username</p>
+        <input type="text" placeholder="Username" [(ngModel)]="username" name="username" >
+        <p class="nameInput">Email</p>
+        <input type="email" placeholder="email"  [(ngModel)]="email" name="email" >
+        <p class="nameInput">Password</p>
+        <input type="password" placeholder="password"  [(ngModel)]="password" name="password" >
+        <p class="nameInput">Confirmpassword</p>
+        <input type="password" placeholder="confirmpassword"  [(ngModel)]="confirmpassword" name="confirmpassword" >
+        <button class="btnRegister" (click)="new()">Register</button>
+    </div>
+</div>

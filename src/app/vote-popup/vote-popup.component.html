@@ -1,0 +1,38 @@
+<div class="container">
+    <div>
+        <p class="namehead">Calculate</p>
+    </div>
+    <div style="display: flex;">
+        <div *ngIf="showWinImage">
+            <img class="position" src="https://media1.giphy.com/media/SHzl9RryJ4klFthKzD/200.gif" alt="win">
+        </div>
+        <div *ngIf="showLoseImage">
+            <img class="position3" src="https://cdn.discordapp.com/attachments/1160973369261437059/1212232788707770438/1389680-middle-Photoroom.png-Photoroom.png?ex=65f116c3&is=65dea1c3&hm=a262817aacf31f6f0d3bfb60f60990f4b1fa933fc328fcb57c333e02662f5534&" alt="lose">
+        </div>
+        <div class="card">
+            <p>{{ selectedLeftName }}</p>
+            <img class="img" src="{{ selectedLeftPhoto }}" alt="img">
+            <p>{{ selectedLeftPost_id }}</p>
+            <p>{{ selectedLeftUser_id }}</p>
+        </div>
+        <div>
+            <img class="imgvs"
+                src="https://cdn.discordapp.com/attachments/1160973369261437059/1212341417246990416/21195084-contre-signe-dans-pixel-art-style-vectoriel-Photoroom.png-Photoroom.png?ex=65f17bee&is=65df06ee&hm=494ae55f474148caffa9661f416fb24075a8ec3a7b72c6dbedb255776452fabf&"
+                alt="vs">
+                <!-- <button (click)="sendVote()">OK</button> -->
+
+        </div>
+        <div *ngIf="showLoseImage">
+            <img class="position2" src="https://media1.giphy.com/media/SHzl9RryJ4klFthKzD/200.gif" alt="win">
+        </div>
+        <div *ngIf="showWinImage">
+            <img class="position4" src="https://cdn.discordapp.com/attachments/1160973369261437059/1212232788707770438/1389680-middle-Photoroom.png-Photoroom.png?ex=65f116c3&is=65dea1c3&hm=a262817aacf31f6f0d3bfb60f60990f4b1fa933fc328fcb57c333e02662f5534&" alt="lose">
+        </div>
+        <div class="card">
+            <p>{{ selectedRightName }}</p>
+            <img class="img" src="{{ selectedRightPhoto }}" alt="img">
+            <p>{{selectedRightPost_id}}</p>
+            <p>{{selectedRightUser_id}}</p>
+        </div>
+    </div>
+</div>

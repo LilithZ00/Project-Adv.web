@@ -1,0 +1,24 @@
+<app-header></app-header>
+<div style="padding: 20px; display: flex; justify-content: center;">
+    <div class="card" style="text-align: center;">
+        <div *ngFor="let index of name" style="display: flex;">
+            <div *ngIf="userId == index.user_id">
+                <img class="img-avatar"
+                    src="{{ index.avatar }}" alt="avatar">
+                <button class="btn" style="display: block; margin: 10px auto;">Confirm</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="padding: 20px; display: flex; justify-content: center;">
+    <div class="card-2">
+        <div>
+            <p class="nameInput">Name</p>
+            <input type="text" placeholder="name" [(ngModel)]="nameInput" name="nameInput" required>
+        </div>
+        <div>
+            <button (click)="Confirm()" class="btn-2">Confirm</button>
+            <button (click)="send()" class="btn-3">Change</button>
+        </div>
+    </div>
+</div>

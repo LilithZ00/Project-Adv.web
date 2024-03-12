@@ -1,0 +1,115 @@
+.img-avatar{
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    object-fit: cover;
+    padding: 20px;
+    margin-top: 20px;
+    position: absolute;
+    margin-top: 70px;
+}
+
+.btn-modify {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #ffffff;
+    margin-left: 10px;
+    margin-top: -135px;
+    border: 3px solid #ccc;
+}
+
+.btn-modify2 {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #ffffff;
+    margin-left: 10px;
+    margin-top: -135px;
+    border: 3px solid #ccc;
+}
+
+.btn-modify3 {
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 100%;
+    background-color: rgb(255, 255, 255);
+    color: #ffffff;
+    margin-top: -135px;
+    border: 3px solid #ccc;
+    margin-left: -135px;
+}
+
+.btn-modify:hover {
+    background-color: rgb(151, 151, 151);
+}
+
+.btn-modify2:hover {
+    background-color: rgb(151, 151, 151);
+}
+
+.btn-modify3:hover {
+    background-color: rgb(151, 151, 151);
+}
+
+.icon-modify{
+    width: 80%;
+    margin-top: 3px;
+}
+
+.icon-modify2{
+    width: 80%;
+    margin-top: 3px;
+}
+
+
+.card-in-post{
+    background-color: rgba(183, 231, 255, 0.575) ;
+    padding: 20px;
+    border-radius: 30px;
+    margin-bottom: 10px;
+}
+
+
+.img-in-post{
+    // padding: 0px;
+    width: 250px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 30px;
+}
+
+.name-caption{
+    margin-top: -20px;
+    margin-bottom: 0px;
+    padding: 10px;
+    font-size: 20px;
+    max-width: 150px; /* กำหนดความกว้างสูงสุดของชื่อ */
+    white-space: nowrap; /* ป้องกันการขึ้นบรรทัดใหม่ */
+    overflow: hidden; /* ซ่อนเนื้อหาที่เกินขอบเขตของ div */
+    text-overflow: ellipsis; /* เพิ่มจุดตัดเมื่อชื่อเกินขอบเขต */
+}
+
+.vote-score {
+    margin: 0; /* ลบการขยับของข้อความ */
+}
+
+.name-vote-score {
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    padding: 10px; 
+    margin-bottom: -10px;
+}
+
+.caption-container {
+    display: flex;
+    justify-content: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวนอน */
+    align-items: center; /* จัดให้เนื้อหาอยู่ตรงกลางแนวตั้ง */
+    height: 100%; /* ให้สูงเท่ากับความสูงของ div card-in-post */
+}

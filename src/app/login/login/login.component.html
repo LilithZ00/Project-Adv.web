@@ -1,0 +1,22 @@
+<div style="display: flex; justify-content: center;">
+    <div class="card">
+        <div class="center">
+            <img style="border-radius:50%; margin-left: 50px;"
+                src="https://i.pinimg.com/736x/6c/24/ca/6c24ca0bb77928acd539845542526994.jpg" width="150px"
+                height="140px">
+            <p class="nameweb" style="margin-bottom: -10px; text-align: center; margin-top: 0px;">Character</p>
+            <hr>
+            <p class="nameweb" style="text-align: center;">NO.1</p>
+            <a class="nameInput">Email</a>
+            <input type="text" placeholder="email" [(ngModel)]="email" name="email" required>
+            <a class="nameInput">Password</a>
+            <input style="margin-bottom:20px;" type="password" placeholder="password" [(ngModel)]="password" name="password" required>
+            <div style="text-align: center;">
+                <button class="btn" (click)="login()">Login</button>
+                <button class="btn" (click)="register()">Register</button>
+            </div>
+            <p class="create">Create By Lilith & Pip</p>
+        </div>
+    </div>
+</div>
+  

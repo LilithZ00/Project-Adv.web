@@ -1,0 +1,69 @@
+.card {
+    width: 350px;
+    height: 500px;
+    margin: auto;
+    /* ให้การ์ดอยู่ตรงกลางทั้งแนวนอนและตั้ง */
+    padding: 40px;
+    background-color: rgb(183, 231, 255);
+    border-radius: 10px;
+    margin-top: 30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+.caption {
+    margin-top: -20px;
+    margin: 0px;
+    margin-top: -30px;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 25px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.img {
+    width: 350px;
+    height: 400px;
+    object-fit: cover;
+    border: 2px solid #8f8f8f;
+}
+
+button {
+    width: 100px;
+    height: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(125, 127, 241);
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: rgb(104, 107, 243);
+}
+
+.con {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.count-vote {
+    display: flex;
+    justify-content: flex-end;
+    opacity: 0.3;
+}
+
+.vs {
+    width: 500px;
+    height: 500px;
+    margin-top: 50px;
+}
+
+.background {
+    display: flex;
+}

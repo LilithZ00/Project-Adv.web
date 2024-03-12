@@ -1,0 +1,24 @@
+// /* You can add global styles to this file, and also import other style files */
+// body{ 
+   
+//      /* ปิดการทำซ้ำภาพพื้นหลัง */
+//     object-fit: cover;
+//     background-size: 103%;
+    
+// }
+// styles.scss
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200;300;400;500;600;700&display=swap');
+
+html, body {
+  font-family: 'Kanit', sans-serif;
+  background-image: url('https://mods.store.gx.me/mod/d4b17492-4443-4d3d-8656-6fe8324d18a8/cover/6387d777-69d3-403b-adaf-63eafc6d141b?fd40a4b8b151c4e432106576187d03c9');
+  background-repeat: no-repeat;
+  object-fit: cover;
+  background-size: 103%;
+  
+}
+
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

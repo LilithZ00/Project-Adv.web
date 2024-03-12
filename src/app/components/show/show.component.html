@@ -1,0 +1,28 @@
+<app-header></app-header>
+<div class="background">
+    <div class="card">
+        <p class="caption">{{ selectedLeftName }}</p>
+        <img class="img"
+        [src]="selectedLeftPhoto"
+            alt="img">
+        <div class="con">
+            <button (click)="showAlert()" style="font-weight: bold;">VOTE</button>
+        </div>
+        <p class="count-vote">Vote : 100</p>
+    </div>
+    <div>
+        <img class="vs"
+            src="https://cdn.discordapp.com/attachments/1160973369261437059/1212341417246990416/21195084-contre-signe-dans-pixel-art-style-vectoriel-Photoroom.png-Photoroom.png?ex=65f17bee&is=65df06ee&hm=494ae55f474148caffa9661f416fb24075a8ec3a7b72c6dbedb255776452fabf&"
+            alt="vs">
+    </div>
+    <div class="card">
+        <p class="caption">{{ selectedRightName }}</p>
+        <img class="img"
+        [src]="selectedRightPhoto"
+            alt="img">
+        <div class="con">
+            <button (click)="showAlert()" style="font-weight: bold;">VOTE</button>
+        </div>
+        <p class="count-vote">Vote : 100</p>
+    </div>
+</div>
