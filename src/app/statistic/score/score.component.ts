@@ -27,10 +27,10 @@ export class ScoreComponent {
         const url = "http://localhost:3000/post/joinUser";
         this.http.get<any>(url).subscribe(
             (data: any) => {
-                console.log(data);
+                // console.log(data);
               },
               (error: any) => {
-                alert("quay");
+                alert(error);
               }
         );
 
@@ -42,7 +42,17 @@ export class ScoreComponent {
                 // console.log(this.datas);
               },
               (error: any) => {
-                alert("kuy");
+                alert(error);
+              }
+        );
+
+        const urlsss = "http://localhost:3000/vote/date";
+        this.http.get<any>(urlsss).subscribe(
+            (data: any) => {
+                console.log(data);
+              },
+              (error: any) => {
+                alert(error);
               }
         );
 
@@ -56,5 +66,9 @@ export class ScoreComponent {
         this.routers.navigate(['/header', this.userId]);
         this.routers.navigate(['/score/grap', this.userId, idP]);
         console.log(this.userId);
+    }
+
+    oninit(){
+        
     }
 }

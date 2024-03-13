@@ -13,13 +13,14 @@ import Chart from 'chart.js/auto';
     imports: [HeaderComponent, RouterModule, CommonModule, HttpClientModule],
 
 })
-export class GrapComponent implements OnInit {
+export class GrapComponent {
     userId: any;
     idP: any;
     datas: any;
 
     chart: any;
-    data: any[] | undefined;
+    data: any[] = [];
+
 
     constructor(private router: ActivatedRoute, private http: HttpClient) {
         this.router.params.subscribe(params => {
@@ -43,28 +44,72 @@ export class GrapComponent implements OnInit {
         );
     }
     ngOnInit(): void {
-        // Call API to get data
-            this.http.get<any[]>('http://localhost:3000/vote/join').subscribe(data => {
-            this.data = data;
+        this.router.params.subscribe(params => {
+            this.idP = params['idP'];
+        });
 
-            // Process data to prepare for chart
-            const labels = this.data.map(item => item.date);
-            const scores = this.data.map(item => item.score_sum);
+        // Calculate the start date 7 days ago
+        const startDate = new Date();
+        startDate.setDate(startDate.getDate() - 7);
+
+        this.http.get<any[]>(`http://localhost:3000/post/grap/${this.idP}`).subscribe(data => {
+            // Create an array of all dates within the last 7 days
+            const dates = this.getDates(startDate);
+
+            // Initialize differences array with 0s for all dates
+            const differences: number[] = Array(dates.length).fill(0);
+            const pid: number[] = Array(dates.length).fill(0);
+
+            // Populate differences array with score differences where available
+            data.forEach(item => {
+                const index = dates.indexOf(item.date);
+                if (index !== -1) {
+                    differences[index] = item.score_sum;
+                    pid[index] = item.post_id
+                }
+            });
+
+            // Adjust score difference for dates with only one vote
+            for (let i = 1; i < differences.length; i++) {
+                if (differences[i] === 0) {
+                    differences[i] = differences[i - 1];
+                }
+            }
 
             // Create chart
-            this.createChart(labels, scores);
+            this.createChart(dates, differences, pid);
         });
     }
 
-    createChart(labels: string[], scores: number[]): void {
+    getDates(startDate: Date): string[] {
+        const dates: string[] = [];
+        for (let i = 0; i <= 7; i++) {
+            const date = new Date(startDate);
+            date.setDate(startDate.getDate() + i);
+            dates.push(date.toISOString().slice(0, 10));
+        }
+        return dates;
+    }
+
+    createChart(labels: string[], scores: number[], pid: number[]): void {
+        const differences: number[] = [];
+
+        // Calculate score differences for each day\
+        // scores[0] = scores[0] - 1000;
+
+        for (let i = 1; i < scores.length; i++) {
+            const difference = scores[i]
+            differences.push(difference);
+        }
+        // Create chart
         this.chart = new Chart('canvas', {
             type: 'line',
             data: {
-                labels: labels,
+                labels: labels.slice(1), // Exclude the first date since there's no difference
                 datasets: [
                     {
-                        label: 'Score Sum',
-                        data: scores,
+                        label: 'Score Difference',
+                        data: differences,
                         borderColor: 'rgb(75, 192, 192)',
                         tension: 0.1
                     }
@@ -73,12 +118,18 @@ export class GrapComponent implements OnInit {
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true
+                        beginAtZero: true,
+                        suggestedMin: 0, // ค่าขั้นต่ำของแกน Y
+                        suggestedMax: 2000 // ค่าสูงสุดของแกน Y
                     }
                 }
             }
         });
-        throw new Error('Method not implemented.');
     }
 
+
+
+
 }
+
+
