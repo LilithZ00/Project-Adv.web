@@ -37,7 +37,7 @@ export const routes: Routes = [
   { path: 'profile/editprofile/:id', component: EditprofileComponent },
   { path: 'profile/changepassword/:id', component: ChangepasswordComponent },
   { path: 'profile/add/:id', component: AddComponent },
-  { path: 'profile/editpost', component: EditpostComponent },
+  { path: 'profile/editpost/:id/:idP', component: EditpostComponent },
 
   { path: 'score/:id', component: ScoreComponent },
   { path: 'score/grap/:id/:idP', component: GrapComponent },

@@ -5,12 +5,15 @@
 }
 
 .img-edit{
-    width: 20%;
+    margin-top: 20px;
+    width: 300px;
+    height: 300px;
+    object-fit: cover ;
     border-radius: 20px;
 }
 
 input {
-    width: 70%;
+    width: 100%;
     padding: 8px;
     box-sizing: border-box;
     border-radius: 20px;
@@ -58,3 +61,35 @@ button.btn:hover {
 button.btn-delete:hover {
     background-color: rgb(255, 48, 48);
 }
+
+.item-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* กำหนดคอลัมน์ให้ข้อมูลแสดงแถวละ 2 */
+    gap: 100px; /* ระยะห่างระหว่างแถวและคอลัมน์ */
+}
+
+button.btn:hover, button.btn-delete:hover {
+    filter: brightness(85%); /* เพิ่มเอฟเฟกต์เมื่อโฮเวอร์ที่ปุ่ม */
+}
+
+.card-btn {
+    width: 20px;
+    justify-content: center; /* จัดการตำแหน่งแนวนอนเป็นกลาง */
+    align-items: center;
+    padding: 40px;
+    z-index: 0;
+    position: absolute;
+}
+
+.back-btn {
+    border: none;
+    background: none;
+    color: rgb(116, 116, 116);
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 20px;
+    margin-top: -35px;
+    margin-left: -29px;
+    z-index: 100;
+    position: absolute;
+  }

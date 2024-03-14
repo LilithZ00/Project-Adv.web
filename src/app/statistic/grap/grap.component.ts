@@ -48,13 +48,14 @@ export class GrapComponent {
             this.idP = params['idP'];
         });
 
-        // Calculate the start date 7 days ago
-        const startDate = new Date();
-        startDate.setDate(startDate.getDate() - 7);
-
+        // Fetch data from the API
         this.http.get<any[]>(`http://localhost:3000/post/grap/${this.idP}`).subscribe(data => {
             // Create an array of all dates within the last 7 days
-            const dates = this.getDates(startDate);
+            const endDate = new Date(data[data.length - 1].date); // Use the last date from the dataset
+            const startDate = new Date(endDate);
+            startDate.setDate(startDate.getDate() - 6); // Start date is 7 days before the end date
+
+            const dates = this.getDates(startDate, endDate);
 
             // Initialize differences array with 0s for all dates
             const differences: number[] = Array(dates.length).fill(0);
@@ -81,12 +82,12 @@ export class GrapComponent {
         });
     }
 
-    getDates(startDate: Date): string[] {
+    getDates(startDate: Date, endDate: Date): string[] {
         const dates: string[] = [];
-        for (let i = 0; i <= 7; i++) {
-            const date = new Date(startDate);
-            date.setDate(startDate.getDate() + i);
-            dates.push(date.toISOString().slice(0, 10));
+        let currentDate = new Date(startDate);
+        while (currentDate <= endDate) {
+            dates.push(currentDate.toISOString().slice(0, 10));
+            currentDate.setDate(currentDate.getDate() + 1);
         }
         return dates;
     }
@@ -97,15 +98,15 @@ export class GrapComponent {
         // Calculate score differences for each day\
         // scores[0] = scores[0] - 1000;
 
-        for (let i = 1; i < scores.length; i++) {
-            const difference = scores[i]
+        for (let i = 0; i < scores.length; i++) {
+            const difference = scores[i];
             differences.push(difference);
         }
         // Create chart
         this.chart = new Chart('canvas', {
             type: 'line',
             data: {
-                labels: labels.slice(1), // Exclude the first date since there's no difference
+                labels: labels, // Include all dates within the last 7 days
                 datasets: [
                     {
                         label: 'Score Difference',

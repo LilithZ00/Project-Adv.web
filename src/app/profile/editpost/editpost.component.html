@@ -1,17 +1,23 @@
 <app-header></app-header>
 <div style="padding: 20px;">
+    <div class="card-btn">
+        <button class="back-btn" (click)="back()">&lt; Back</button>
+    </div>
     <div class="card">
-        <div style=" display: flex;">
-            <img class="img-edit"
-                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/c1f1e399-7fd6-4bb5-9b38-0f287edc3633/dd3wvup-9388005f-6452-4e71-a729-9a0f3536a4a4.jpg/v1/fill/w_916,h_872,q_70,strp/johnny_joestar_tusk_act4__all_star_battle_colors__by_alp4xox_dd3wvup-pre.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcL2MxZjFlMzk5LTdmZDYtNGJiNS05YjM4LTBmMjg3ZWRjMzYzM1wvZGQzd3Z1cC05Mzg4MDA1Zi02NDUyLTRlNzEtYTcyOS05YTBmMzUzNmE0YTQuanBnIiwiaGVpZ2h0IjoiPD05NzUiLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS53YXRlcm1hcmsiXSwid21rIjp7InBhdGgiOiJcL3dtXC9jMWYxZTM5OS03ZmQ2LTRiYjUtOWIzOC0wZjI4N2VkYzM2MzNcL2FscDR4b3gtNC5wbmciLCJvcGFjaXR5Ijo5NSwicHJvcG9ydGlvbnMiOjAuNDUsImdyYXZpdHkiOiJjZW50ZXIifX0.IGNNaKEBmcOHM6IOV1ahEv1zV1zuu0PV3wP0wetSsVI"
-                alt="img">
-            <div style="padding: 20px;">
-                <p class="nameInput">Name</p>
-                <input type="text" placeholder="name" required>
-                <p class="nameInput">URL</p>
-                <input type="url" placeholder="url" required>
-                <button class="btn">Confirm</button>
-                <button class="btn-delete">Delete</button>
+        <div class="item-container">
+            <div *ngFor="let index of datas">
+                <div style="display: flex; align-items: center;" *ngIf="userId == index.user_id">
+                    <img class="img-edit" src="{{ index.post_photo }}" alt="img">
+                    <div style="padding: 20px;" *ngIf="index.post_id == index.post_id">
+                        <p class="nameInput">Name</p>
+                        <input type="text" placeholder="{{ index.post_caption }}" required [(ngModel)]="caption"
+                            name="caption">
+                        <p class="nameInput">URL</p>
+                        <input type="url" placeholder="url" required [(ngModel)]="url" name="url">
+                        <button (click)="sendUpdate(index.post_id)" class="btn">Confirm</button>
+                        <button (click)="sendDelete(index.post_id)" class="btn-delete">Delete</button>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

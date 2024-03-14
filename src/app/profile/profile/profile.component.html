@@ -9,17 +9,15 @@
         </div>
         <div style="text-align: center; display: flex; margin-top: 85px; margin-left: 400px;">
             <button (click)="send()" class="btn-modify3"><img class="icon-modify2"
-                    src="https://cdn-icons-png.flaticon.com/512/764/764599.png" alt="edit">
+                    src="https://cdn-icons-png.flaticon.com/512/764/764599.png" alt="editprofile">
             </button>
         </div>
     </div>
     <div style="margin-top: 46px;">
-        <button routerLink="/profile/add" routerLinkActive="router-link-active" class="btn-modify2" (click)="checkPostLimit()"><img
+        <button class="btn-modify2" (click)="checkPostLimit()"><img
                 class="icon-modify" src="https://cdn-icons-png.freepik.com/512/32/32339.png" alt="add">
         </button>
-        <button routerLink="/profile/editpost" class="btn-modify"><img class="icon-modify"
-                src="https://cdn-icons-png.flaticon.com/512/764/764599.png" alt="edit">
-        </button>
+        
         <div style="display: flex; justify-content: center; ">
             <div *ngFor="let index of name" >
                 <div *ngIf="userId == index.user_id" class="card-in-post" style="margin: 5px;" >
@@ -30,8 +28,12 @@
                         src="{{ index.post_photo }}"
                         alt="img">
                     <div class="name-vote-score">
-                        <p class="vote-score">vote : 100</p>
-                        <p class="vote-score">score : 100</p>
+                        <p class="vote-score">score : {{ index.score }}</p>
+                        <div>
+                        <button (click)="sendpost(index.post_id)" class="btn-modify"><img class="icon-modify"
+                            src="https://cdn-icons-png.flaticon.com/512/764/764599.png" alt="editpost">
+                        </button>
+                        </div>
                     </div>
                 </div>
             </div>

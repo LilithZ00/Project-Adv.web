@@ -57,11 +57,11 @@ export class ProfileComponent {
     this.countUserPosts(this.userId).subscribe((postCount: number) => {
       if (postCount >= 5) {
         alert('คุณมีรูปภาพครบ 5 รายการแล้ว');
-      console.log(postCount);
       } else {
         // นำทางไปยังหน้าเพิ่มโพสท์
+        this.router.navigate(['/header', this.userId]);
         this.router.navigate(['/profile/add', this.userId]);
-      console.log(postCount);
+      // console.log(postCount);
       }
     });
   }
@@ -71,5 +71,8 @@ export class ProfileComponent {
     this.router.navigate(['profile/editprofile', this.userId]);
   }
 
-
+  sendpost(idP: number){
+    this.router.navigate(['/header', this.userId]);
+    this.router.navigate(['profile/editpost', this.userId, idP]);
+  }
 }
