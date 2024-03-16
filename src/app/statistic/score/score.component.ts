@@ -24,7 +24,7 @@ export class ScoreComponent {
         console.log(this.userId);
 
 
-        const url = "http://localhost:3000/post/joinUser";
+        const url = "https://adv-node.onrender.com/post/joinUser";
         this.http.get<any>(url).subscribe(
             (data: any) => {
                 // console.log(data);
@@ -34,7 +34,7 @@ export class ScoreComponent {
               }
         );
 
-        const urls = "http://localhost:3000/post/score10";
+        const urls = "https://adv-node.onrender.com/post/scoreCheck";
         this.http.get<any>(urls).subscribe(
             (data: any) => {
                 
@@ -46,7 +46,7 @@ export class ScoreComponent {
               }
         );
 
-        const urlsss = "http://localhost:3000/vote/date";
+        const urlsss = "https://adv-node.onrender.com/vote/date";
         this.http.get<any>(urlsss).subscribe(
             (data: any) => {
                 console.log(data);
@@ -61,12 +61,20 @@ export class ScoreComponent {
 
 
 
+    str:String = 'Yesterday';
+    strs:String = 'Today';
 
-    showGrap(idP : number) {
+    showGrapTo(idP : number) {
         this.routers.navigate(['/header', this.userId]);
-        this.routers.navigate(['/score/grap', this.userId, idP]);
+        this.routers.navigate(['/score/grap', this.userId, idP,this.strs]);
         console.log(this.userId);
     }
+
+    showGrapYes(idP : number) {
+      this.routers.navigate(['/header', this.userId]);
+      this.routers.navigate(['/score/grap', this.userId, idP,this.str]);
+      console.log(this.userId);
+  }
 
     oninit(){
         

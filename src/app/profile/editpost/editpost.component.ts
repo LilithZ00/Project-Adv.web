@@ -24,7 +24,7 @@ export class EditpostComponent {
       this.idP = params['idP'];
       console.log(this.userId,this.idP);
     });
-    const url = `http://localhost:3000/post/${this.idP}`;
+    const url = `https://adv-node.onrender.com/post/${this.idP}`;
     this.http.get<any>(url).subscribe(
       (data: any) => {
         this.datas = data;
@@ -45,7 +45,7 @@ export class EditpostComponent {
       'post_caption': this.caption
     };
 
-    const urls = `http://localhost:3000/post/update_post/${id}`;
+    const urls = `https://adv-node.onrender.com/post/update_post/${id}`;
     this.http.put<any>(urls, data).subscribe(
       (data: any) => {
         alert('kk');
@@ -60,7 +60,7 @@ export class EditpostComponent {
   }
 
   sendDelete(id:number) {
-    const urls = `http://localhost:3000/post/delete_post/${id}`;
+    const urls = `https://adv-node.onrender.com/post/delete_post/${id}`;
     this.http.delete<any>(urls).subscribe(
       (data: any) => {
         alert('ลบสำเร็จ');

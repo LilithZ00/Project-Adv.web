@@ -19,7 +19,7 @@ export class ProfileComponent {
   showLoseImage: boolean = false;
   name: any[] = [];
   constructor(private router: Router, private routers: ActivatedRoute, private http: HttpClient) {
-    const url = 'http://localhost:3000/project/join';
+    const url = 'https://adv-node.onrender.com/project/join';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         // const user = data.find((item: any) => item.user_id === this.userId);
@@ -46,7 +46,7 @@ export class ProfileComponent {
 
   // นับจำนวนโพสท์ที่เกี่ยวข้องกับ userId
   countUserPosts(userId: number): Observable<number> {
-    const url = `http://localhost:3000/project/join/${userId}`;
+    const url = `https://adv-node.onrender.com/project/join/${userId}`;
     return this.http.get<any[]>(url).pipe(
       map((posts: string | any[]) => posts.length) // นับจำนวนโพสท์ที่ได้รับมา
     );

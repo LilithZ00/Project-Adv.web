@@ -19,7 +19,7 @@ export class AvataPopupComponent {
   avatars: any[] = [];
 
   constructor(public dialogRef: MatDialogRef<AvataPopupComponent>, private http: HttpClient) {
-    const url = 'http://localhost:3000/avatar';
+    const url = 'https://adv-node.onrender.com/avatar';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         this.avatars = data;

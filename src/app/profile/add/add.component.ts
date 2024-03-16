@@ -34,7 +34,7 @@ export class AddComponent {
         return; // หยุดการทำงานทันทีหากข้อมูลไม่ครบ
     }
 
-    const urlss = 'http://localhost:3000/post/insert_post';
+    const urlss = 'https://adv-node.onrender.com/post/insert_post';
 
     const data = {
         'post_photo': this.url,

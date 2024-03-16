@@ -20,19 +20,22 @@ export class GrapComponent {
 
     chart: any;
     data: any[] = [];
+    str: any;
 
 
     constructor(private router: ActivatedRoute, private http: HttpClient) {
         this.router.params.subscribe(params => {
             this.userId = params['id'];
-            this.idP = params['idP'];
-            console.log(this.userId);
-            console.log(this.idP);
+            this.idP = params['idPT'];
+            this.str = params['str'];
+            // console.log(this.userId);
+            // console.log(this.idP);
+            console.log(this.str);
         });
 
 
 
-        const url = 'http://localhost:3000/vote/join';
+        const url = 'https://adv-node.onrender.com/vote/join';
         this.http.get<any>(url).subscribe(
             (data: any) => {
                 console.log(data);
@@ -49,7 +52,7 @@ export class GrapComponent {
         });
 
         // Fetch data from the API
-        this.http.get<any[]>(`http://localhost:3000/post/grap/${this.idP}`).subscribe(data => {
+        this.http.get<any[]>(`https://adv-node.onrender.com/post/grap/${this.idP}`).subscribe(data => {
             // Create an array of all dates within the last 7 days
             const endDate = new Date(data[data.length - 1].date); // Use the last date from the dataset
             const startDate = new Date(endDate);
@@ -97,11 +100,19 @@ export class GrapComponent {
 
         // Calculate score differences for each day\
         // scores[0] = scores[0] - 1000;
-
-        for (let i = 0; i < scores.length; i++) {
-            const difference = scores[i];
-            differences.push(difference);
+        if (this.str === 'Today') {
+            for (let i = 0; i < scores.length; i++) { //day
+                const difference = scores[i];
+                differences.push(difference);
+            }
         }
+        else if(this.str === 'Yesterday'){
+            for (let i = 0; i < scores.length-1; i++) { //day
+                const difference = scores[i];
+                differences.push(difference);
+            }
+        }
+
         // Create chart
         this.chart = new Chart('canvas', {
             type: 'line',
@@ -121,7 +132,7 @@ export class GrapComponent {
                     y: {
                         beginAtZero: true,
                         suggestedMin: 0, // ค่าขั้นต่ำของแกน Y
-                        suggestedMax: 2000 // ค่าสูงสุดของแกน Y
+                        suggestedMax: 1600 // ค่าสูงสุดของแกน Y
                     }
                 }
             }

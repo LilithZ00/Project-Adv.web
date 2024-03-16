@@ -29,7 +29,7 @@ export class ShowComponent {
   RightScore_sum: number | undefined;
 
     constructor(private route: ActivatedRoute, private router: Router, private http: HttpClient) {
-        const url = 'http://localhost:3000/post';
+        const url = 'https://adv-node.onrender.com/post';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         this.name = data;

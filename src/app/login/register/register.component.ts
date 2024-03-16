@@ -46,7 +46,7 @@ export class RegisterComponent {
         'avatar_id': "1"
       };
 
-      const url = 'http://localhost:3000/project/register';
+      const url = 'https://adv-node.onrender.com/project/register';
       this.http.post<any>(url, body).subscribe(
         (data: any) => {
           // console.log(data);

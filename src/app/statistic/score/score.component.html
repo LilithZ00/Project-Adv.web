@@ -1,19 +1,33 @@
 <app-header></app-header>
-<div style="padding: 20px;">
-    <div class="card">
-        <div class="bt-g" *ngFor="let data of datas; let i = index">
+<div style="padding: 20px; display: flex; justify-content: space-between;">
+    <!-- Yesterday's Rankings -->
+    <div class="card" *ngIf="datas && datas.length > 0">
+        <h2>Yesterday's Rankings</h2>
+        <div class="bt-g" *ngFor="let data of datas.slice(10, 20); let i = index">
+            <!-- Display yesterday's rankings -->
             <div style="display: flex; align-items: center;">
                 <p class="number" style="padding: 20px;">{{ i + 1 }}</p>
-                <a (click)="showGrap(data.post_id)" style="cursor: pointer; display: flex; align-items: center; padding: 10px;">
+                <a (click)="showGrapYes(data.post_id)" style="cursor: pointer; display: flex; align-items: center; padding: 10px;">
                     <img class="img" src="{{ data.post_photo }}" alt="">
                     <p class="caption" style="padding: 20px;">{{ data.post_caption }}</p>
                 </a>
             </div>
-            <p class="score">{{ data.score }}</p>
+            <p class="score">{{ data.score_sum }}</p>
         </div>
-
+    </div>
+    <!-- Today's Rankings -->
+    <div class="card" *ngIf="datas && datas.length > 0">
+        <h2>Today's Rankings</h2>
+        <div class="bt-g" *ngFor="let data of datas.slice(0, 10); let i = index">
+            <!-- Display today's rankings -->
+            <div style="display: flex; align-items: center;">
+                <p class="number" style="padding: 20px;">{{ i + 1 }}</p>
+                <a (click)="showGrapTo(data.post_id)" style="cursor: pointer; display: flex; align-items: center; padding: 10px;">
+                    <img class="img" src="{{ data.post_photo }}" alt="">
+                    <p class="caption" style="padding: 20px;">{{ data.post_caption }}</p>
+                </a>
+            </div>
+            <p class="score">{{ data.score_sum }}</p>
+        </div>
     </div>
 </div>
-
-
-    

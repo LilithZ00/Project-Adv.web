@@ -14,7 +14,7 @@ export class ChangepasswordComponent {
   name: any[]=[];
   userId: any;
   constructor(private router: Router, private routers: ActivatedRoute, private http:HttpClient) {
-    const url = 'http://localhost:3000/project';
+    const url = 'https://adv-node.onrender.com/project';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         // const user = data.find((item: any) => item.user_id === this.userId);

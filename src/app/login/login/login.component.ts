@@ -24,7 +24,7 @@ export class LoginComponent {
   }
 
   login() {
-    const url = 'http://localhost:3000/project';
+    const url = 'https://adv-node.onrender.com/project';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         this.avatars = data;

@@ -40,7 +40,7 @@ export const routes: Routes = [
   { path: 'profile/editpost/:id/:idP', component: EditpostComponent },
 
   { path: 'score/:id', component: ScoreComponent },
-  { path: 'score/grap/:id/:idP', component: GrapComponent },
+  { path: 'score/grap/:id/:idP/:str', component: GrapComponent },
 
 ];
 

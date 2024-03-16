@@ -6,14 +6,13 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Router, RouterModule } from '@angular/router';
 
 @Component({
-  selector: 'app-vote-popup',
+  selector: 'app-vote-show',
   standalone: true,
   imports: [MatDialogModule, CommonModule, HttpClientModule, RouterModule],
-  templateUrl: './vote-popup.component.html',
-  styleUrl: './vote-popup.component.scss'
+  templateUrl: './vote-show.component.html',
+  styleUrl: './vote-show.component.scss'
 })
-export class VotePopupComponent {
-
+export class VoteShowComponent {
   selectedLeftName: string;
   selectedRightName: string;
   selectedRightPhoto: any;
@@ -32,7 +31,7 @@ export class VotePopupComponent {
   dataarr: any[] = [];
   K: number;
 
-  constructor(public dialogRef: MatDialogRef<VotePopupComponent>,
+  constructor(public dialogRef: MatDialogRef<VoteShowComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private router: Router) {
     this.selectedLeftName = data.selectedLeftName;
     this.selectedRightName = data.selectedRightName;
@@ -85,6 +84,11 @@ export class VotePopupComponent {
     const Ruser = this.selectedRightUser_id;
     const Rpost = this.selectedRightPost_id;
     const Rscore = this.RightScore_sum;
+
+    // console.log(Post_id);
+    // console.log(User_id);
+    console.log(Luser);
+    console.log(Ruser);
 
     // console.log("Left User"+this.selectedLeftUser_id);
     // console.log("Left Post"+this.selectedLeftPost_id);
@@ -175,64 +179,61 @@ export class VotePopupComponent {
         Rdata.score = rightNewELO;
         console.log("Right's new ELO:", rightNewELO);//update post
       }
-
-
       // ต่อไปจะเป็นการใช้ค่าความคาดหวังนี้ในการดำเนินการต่อไป
     } else {
       console.error("Error: LeftScore_sum or RightScore_sum is undefined");
     }
 
-    const urls = "https://adv-node.onrender.com/vote/insert_vote";
+    // const urls = "https://adv-node.onrender.com/vote/insert_vote";
+    // this.http.post<any>(urls, leftVoteData,).subscribe(
+    //   (data: any) => {
+    //     // console.log("Left vote inserted:", data);
+    //   },
+    //   (error: any) => {
+    //     alert(error.error.message);
+    //   }
+    // );
 
-    this.http.post<any>(urls, leftVoteData,).subscribe(
-      (data: any) => {
-        // console.log("Left vote inserted:", data);
-      },
-      (error: any) => {
-        alert(error.error.message);
-      }
-    );
-
-    this.http.post<any>(urls, rightVoteData).subscribe(
-      (data: any) => {
-        // console.log("Right vote inserted:", data);
-      },
-      (error: any) => {
-        alert(error.error.message);
-      }
-    );
-
+    // this.http.post<any>(urls, rightVoteData).subscribe(
+    //   (data: any) => {
+    //     // console.log("Right vote inserted:", data);
+    //   },
+    //   (error: any) => {
+    //     alert(error.error.message);
+    //   }
+    // );
 
 
-    const urlss = `https://adv-node.onrender.com/post/update_post/${Lpost}`;
-    console.log(Lpost);
-    this.http.put<any>(urlss, Ldata).subscribe(
-      (data: any) => {
-        console.log(data);
-      },
-      (error: any) => {
-        alert(error.error.message);
-      }
-    );
 
-    const urlsss = `https://adv-node.onrender.com/post/update_post/${Rpost}`;
-    console.log(Rpost);
-    const data_score = {
-      'score': 1,
-    };
-    this.http.put<any>(urlsss, Rdata).subscribe(
-      (data: any) => {
-        console.log(data);
-      },
-      (error: any) => {
-        alert(error.error.message);
-      }
-    );
+    // const urlss = `https://adv-node.onrender.com/post/update_post/${Lpost}`;
+    // console.log(Lpost);
+    // this.http.put<any>(urlss, Ldata).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //   },
+    //   (error: any) => {
+    //     alert(error.error.message);
+    //   }
+    // );
+
+    // const urlsss = `https://adv-node.onrender.com/post/update_post/${Rpost}`;
+    // console.log(Rpost);
+    // const data_score = {
+    //   'score': 1,
+    // };
+    // this.http.put<any>(urlsss, Rdata).subscribe(
+    //   (data: any) => {
+    //     console.log(data);
+    //   },
+    //   (error: any) => {
+    //     alert(error.error.message);
+    //   }
+    // );
 
     // รีเฟรชหน้า main
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate(['main', this.id], { queryParamsHandling: 'preserve' });
-      this.dialogRef.close();
+      this.router.navigate([''], { queryParamsHandling: 'preserve' });
+      // this.dialogRef.close();
     });
 
   }
@@ -245,4 +246,5 @@ export class VotePopupComponent {
   User_id(arg0: string, User_id: any) {
     throw new Error('Method not implemented.');
   }
+
 }

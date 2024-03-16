@@ -19,7 +19,7 @@ export class HeaderComponent {
       // console.log(this.userId);
     });
 
-    const url = 'http://localhost:3000/project';
+    const url = 'https://adv-node.onrender.com/project';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         // const user = data.find((item: any) => item.user_id === this.userId);

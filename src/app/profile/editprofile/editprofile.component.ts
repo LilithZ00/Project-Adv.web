@@ -19,7 +19,7 @@ export class EditprofileComponent {
 nameInput: any;
 passwordInput: any;
   constructor(private router: Router, private routers: ActivatedRoute, private http:HttpClient) {
-    const url = 'http://localhost:3000/project';
+    const url = 'https://adv-node.onrender.com/project';
     this.http.get<any>(url).subscribe(
       (data: any) => {
         this.name = data;
@@ -48,7 +48,7 @@ passwordInput: any;
     const body = {
       'user_name': this.nameInput,
     };
-    const url =`http://localhost:3000/project/update/${this.userId}`;
+    const url =`https://adv-node.onrender.com/project/update/${this.userId}`;
     this.http.put<any>(url, body).subscribe(
       (data: any) => {
         // console.log(data);
