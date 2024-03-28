@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { ActivatedRoute, Router,RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 
 @Component({
@@ -12,9 +12,12 @@ import { Location } from '@angular/common';
   styleUrl: './header.component.scss'
 })
 export class HeaderComponent {
+  back() {
+    this.location.back();
+  }
   userId: any;
-  name: any[]=[];
-  constructor(private router: Router, private routers: ActivatedRoute, private http:HttpClient, private location: Location) {
+  name: any[] = [];
+  constructor(private router: Router, private routers: ActivatedRoute, private http: HttpClient, private location: Location) {
     this.routers.params.subscribe(params => {
       this.userId = params['id'];
       // console.log(this.userId);
@@ -35,19 +38,19 @@ export class HeaderComponent {
       }
     );
   }
-  sendhome(){
-    // this.router.navigate(['/header', this.userId]);
-    // this.router.navigate(['/main',this.userId]);
-    this.location.back();
+  sendhome() {
+    this.router.navigate(['/header', this.userId]);
+    this.router.navigate(['/main', this.userId]);
+
   }
-  sendprofile(){
+  sendprofile() {
     // this.router.navigate(['/main',this.userId]);
     this.router.navigate(['/header', this.userId]);
-    this.router.navigate(['/Profile',this.userId]);
+    this.router.navigate(['/Profile', this.userId]);
   }
-  sendscore(){
+  sendscore() {
     this.router.navigate(['/header', this.userId]);
-    this.router.navigate(['/score',this.userId]);
+    this.router.navigate(['/score', this.userId]);
   }
 
 }

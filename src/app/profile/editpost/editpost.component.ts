@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../main/header/header.component';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class EditpostComponent {
   userId: any;
   url: any;
   caption: any;
+  @ViewChild('fileInput') fileInput!: any;
   constructor(private router: Router, private routers: ActivatedRoute, private http: HttpClient) {
     this.routers.params.subscribe(params => {
       this.userId = params['id'];
@@ -36,12 +37,12 @@ export class EditpostComponent {
     );
   }
 
-  sendUpdate(id:number) {
-    console.log(this.url);
+  sendUpdate(img:any,id:number) {
+    console.log(img);
     console.log(this.caption);
 
     const data = {
-      'post_photo': this.url,
+      'post_photo': img,
       'post_caption': this.caption
     };
 
@@ -73,8 +74,32 @@ export class EditpostComponent {
       }
     );
   }
+
+  sendFileToServer(id:any) {
+    const file: File = this.fileInput.nativeElement.files[0];
+    if (!file) {
+      alert('Please select a file');
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    const uploadUrl = 'https://adv-node.onrender.com/upload'; // URL สำหรับอัปโหลดไฟล์
+    this.http.post(uploadUrl, formData).subscribe(
+      (response: any) => {
+        // เรียกใช้ sendData เพื่อส่งข้อมูลไป insert ลงในฐานข้อมูล
+        this.sendUpdate(response.filename,id);
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file');
+      }
+    );
+}
   back() {
     this.router.navigate(['/header', this.userId]);
     this.router.navigate(['/Profile', this.userId]);
   }
 }
+

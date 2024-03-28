@@ -7,6 +7,8 @@
     <p class="nameInput">caption</p>
     <input type="text" placeholder="caption" required [(ngModel)]="caption" name="caption">
     <p class="nameInput">URL</p>
-    <input type="url" placeholder="url" required [(ngModel)]="url" name="url">
-    <button class="btnUpload" (click)="sendData()">Confirm</button>
+    <div>
+        <input type="file" #fileInput>
+        <button (click)="sendFileToServer()">Send File</button>
+    </div>
 </div>

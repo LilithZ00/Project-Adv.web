@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../main/header/header.component';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms';
@@ -9,49 +9,68 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
   standalone: true,
   imports: [HeaderComponent, RouterModule, FormsModule, HttpClientModule],
   templateUrl: './add.component.html',
-  styleUrl: './add.component.scss'
+  styleUrl: './add.component.scss',
 })
 export class AddComponent {
-
   userId: any;
+  @ViewChild('fileInput') fileInput!: any;
 
-  constructor(private route: ActivatedRoute, private http: HttpClient, private router: Router) {
-    this.route.params.subscribe(params => {
+  constructor(
+    private route: ActivatedRoute,
+    private http: HttpClient,
+    private router: Router
+  ) {
+    this.route.params.subscribe((params) => {
       this.userId = params['id'];
-      // console.log(this.userId);
-      // this.sendData(this.userId);
     });
-
   }
-
 
   url: string = '';
   caption: string = '';
-  sendData(): void {
-    // เช็คว่ามีข้อมูลทั้ง caption และ url หรือไม่
-    if (!this.caption || !this.url) {
-        alert('โปรดกรอกข้อมูลให้ครบ');
-        return; // หยุดการทำงานทันทีหากข้อมูลไม่ครบ
-    }
-
-    const urlss = 'https://adv-node.onrender.com/post/insert_post';
-
+  sendData(img: any, uid: any, caption: any): void {
+    // สร้าง object ข้อมูลที่ต้องการส่งไปยังเซิร์ฟเวอร์
     const data = {
-        'post_photo': this.url,
-        'post_caption': this.caption,
-        'post_time': '',
-        'user_id': this.userId
+      'post_photo': img, // ใช้ URL จากการอัปโหลดไฟล์แทน 'aaa'
+      'post_caption': caption,
+      'post_time': '', // ค่าเวลาที่ควรจะมี
+      'user_id': uid,
     };
 
-    this.http.post<any>(urlss, data,).subscribe(
-        (data: any) => {
-            alert('เพิ่มรูปภาพสำเร็จ');
-            this.router.navigate(['/header', this.userId]);
-            this.router.navigate(['/Profile', this.userId]);
-        },
-        (error: any) => {
-            alert(error.error.message);
-        }
+    const url = 'https://adv-node.onrender.com/post/insert_post';
+    this.http.post<any>(url, data).subscribe(
+      (response) => {
+        console.log(response);
+        alert('อัพโหลดรูปสำเร็จ'); // แสดงข้อความแจ้งเตือน
+        // อื่นๆ ที่ต้องการทำหลังจาก insert ข้อมูลเสร็จสิ้น
+        this.router.navigate(['/Profile', this.userId]);
+      },
+      (error) => {
+        console.error('Error inserting data:', error);
+        alert('Error inserting data');
+      }
+    );
+}
+
+sendFileToServer() {
+    const file: File = this.fileInput.nativeElement.files[0];
+    if (!file) {
+      alert('Please select a file');
+      return;
+    }
+  
+    const formData = new FormData();
+    formData.append('file', file);
+  
+    const uploadUrl = 'https://adv-node.onrender.com/upload'; // URL สำหรับอัปโหลดไฟล์
+    this.http.post(uploadUrl, formData).subscribe(
+      (response: any) => {
+        // เรียกใช้ sendData เพื่อส่งข้อมูลไป insert ลงในฐานข้อมูล
+        this.sendData(response.filename, this.userId, this.caption);
+      },
+      (error) => {
+        console.error('Error uploading file:', error);
+        alert('Error uploading file');
+      }
     );
 }
 

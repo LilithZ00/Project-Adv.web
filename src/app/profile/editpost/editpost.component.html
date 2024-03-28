@@ -13,8 +13,8 @@
                         <input type="text" placeholder="{{ index.post_caption }}" required [(ngModel)]="caption"
                             name="caption">
                         <p class="nameInput">URL</p>
-                        <input type="url" placeholder="url" required [(ngModel)]="url" name="url">
-                        <button (click)="sendUpdate(index.post_id)" class="btn">Confirm</button>
+                        <input type="file" #fileInput>
+                        <button (click)="sendFileToServer(index.post_id)" class="btn">Confirm</button>
                         <button (click)="sendDelete(index.post_id)" class="btn-delete">Delete</button>
                     </div>
                 </div>
