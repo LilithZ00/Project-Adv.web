@@ -13,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './vote-popup.component.scss'
 })
 export class VotePopupComponent {
+  [x: string]: any;
 
   selectedLeftName: string;
   selectedRightName: string;
@@ -28,9 +29,21 @@ export class VotePopupComponent {
   post: any;
   name: any[] = [];
 
+  isVotingInProgress: boolean = false;
+
+  rightNewELO: number | undefined; // เพิ่มตัวแปร rightNewELO
+  leftNewELO: number | undefined; // เพิ่มตัวแปร LiftNewELO
+  leftExpectation: number | undefined;
+  rightExpectation: number | undefined;
+  rightELO: number | undefined;
+  leftELO: number | undefined;
+  rightActual: number | undefined;
+  leftActual: number | undefined;
 
   dataarr: any[] = [];
   K: number;
+
+  isCountingDown: boolean = false; // เพิ่มตัวแปรเก็บสถานะการนับถอยหลัง
 
   constructor(public dialogRef: MatDialogRef<VotePopupComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private router: Router) {
@@ -49,6 +62,8 @@ export class VotePopupComponent {
 
     this.K = 30;
 
+    
+
     // console.log(this.LeftScore_sum);
     // console.log(this.RightScore_sum);
 
@@ -60,7 +75,6 @@ export class VotePopupComponent {
 
   openWinImage() {
     this.showWinImage = true;
-    this.showLoseImage = false;
     // console.log("Lef"+this.selectedLeftUser_id);
     // console.log("Lef"+this.selectedLeftPost_id);
     // console.log("Lef"+this.LeftScore_sum);  
@@ -69,7 +83,6 @@ export class VotePopupComponent {
   }
 
   openLoseImage() {
-    this.showWinImage = false;
     this.showLoseImage = true;
     // console.log("Right"+this.selectedRightUser_id);
     // console.log("Right"+this.selectedRightPost_id);
@@ -98,7 +111,6 @@ export class VotePopupComponent {
     this.http.get<any>(url).subscribe(
       (data: any) => {
         pjr = data;
-        this.sendpost(pjr);
         // console.log(pjr[0].score_sum);
       },
       (error: any) => {
@@ -155,6 +167,15 @@ export class VotePopupComponent {
         Rdata.score = rightNewELO;
         console.log("Right's new ELO:", rightNewELO);//update post
 
+        this.leftNewELO = leftNewELO; // กำหนดค่า rightNewELO
+        this.rightNewELO = rightNewELO; // กำหนดค่า rightNewELO
+        this.leftExpectation = leftExpectation;
+        this.rightExpectation = rightExpectation;
+        this.rightELO = rightELO;
+        this.leftELO = leftELO;
+        this.rightActual = rightActual;
+        this.leftActual = leftActual;
+
       }
       else if (Ruser === User_id) {
         // console.log("2");
@@ -173,7 +194,16 @@ export class VotePopupComponent {
         rightVoteData.score_sum = rightNewELO;
         Ldata.score = leftNewELO;
         Rdata.score = rightNewELO;
-        console.log("Right's new ELO:", rightNewELO);//update post
+        // console.log("Right's new ELO:", rightNewELO);//update post
+
+        this.leftNewELO = leftNewELO; // กำหนดค่า rightNewELO
+        this.rightNewELO = rightNewELO; // กำหนดค่า rightNewELO
+        this.leftExpectation = leftExpectation;
+        this.rightExpectation = rightExpectation;
+        this.rightELO = rightELO;
+        this.leftELO = leftELO;
+        this.rightActual = rightActual;
+        this.leftActual = leftActual;
       }
 
 
@@ -203,9 +233,11 @@ export class VotePopupComponent {
     );
 
 
-
     const urlss = `https://adv-node.onrender.com/post/update_post/${Lpost}`;
-    console.log(Lpost);
+    // console.log(Lpost);
+    const data_scoreL = {
+      'score': 1,
+    };
     this.http.put<any>(urlss, Ldata).subscribe(
       (data: any) => {
         console.log(data);
@@ -216,8 +248,8 @@ export class VotePopupComponent {
     );
 
     const urlsss = `https://adv-node.onrender.com/post/update_post/${Rpost}`;
-    console.log(Rpost);
-    const data_score = {
+    // console.log(Rpost);
+    const data_scoreR = {
       'score': 1,
     };
     this.http.put<any>(urlsss, Rdata).subscribe(
@@ -229,20 +261,19 @@ export class VotePopupComponent {
       }
     );
 
+    
+
     // รีเฟรชหน้า main
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
       this.router.navigate(['main', this.id], { queryParamsHandling: 'preserve' });
-      this.dialogRef.close();
+      // this.dialogRef.close();
     });
 
   }
-  sendpost(pjr: any[]) {
-    // console.log(pjr);
-  }
-  Post_id(arg0: string, Post_id: any) {
-    throw new Error('Method not implemented.');
-  }
-  User_id(arg0: string, User_id: any) {
-    throw new Error('Method not implemented.');
+  back() {
+    // เพิ่มเงื่อนไขตรวจสอบสถานะการนับถอยหลัง
+    if (!this.isCountingDown) {
+      this.dialogRef.close();
+    }
   }
 }

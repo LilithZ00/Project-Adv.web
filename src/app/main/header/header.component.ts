@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router,RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-header',
@@ -13,7 +14,7 @@ import { ActivatedRoute, Router,RouterModule } from '@angular/router';
 export class HeaderComponent {
   userId: any;
   name: any[]=[];
-  constructor(private router: Router, private routers: ActivatedRoute, private http:HttpClient) {
+  constructor(private router: Router, private routers: ActivatedRoute, private http:HttpClient, private location: Location) {
     this.routers.params.subscribe(params => {
       this.userId = params['id'];
       // console.log(this.userId);
@@ -35,8 +36,9 @@ export class HeaderComponent {
     );
   }
   sendhome(){
-    this.router.navigate(['/header', this.userId]);
-    this.router.navigate(['/main',this.userId]);
+    // this.router.navigate(['/header', this.userId]);
+    // this.router.navigate(['/main',this.userId]);
+    this.location.back();
   }
   sendprofile(){
     // this.router.navigate(['/main',this.userId]);

@@ -1,10 +1,8 @@
 .container{
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between; /* เปลี่ยนจาก align-items เป็น justify-content */
+        justify-content: space-between;
         text-align: center;
-        height: 100vh;
+        height: 88vh;
         // background-color: rgb(150, 220, 255);
         background-image: url('https://mods.store.gx.me/mod/d4b17492-4443-4d3d-8656-6fe8324d18a8/cover/6387d777-69d3-403b-adaf-63eafc6d141b?fd40a4b8b151c4e432106576187d03c9');
         padding: 20px;
@@ -14,11 +12,6 @@
     width: 350px;
     height: 400px;
     object-fit: cover;
-}
-
-.imgvs{
-    width: 100%;
-    margin-top: 50px;
 }
 
 .namehead{
@@ -40,30 +33,23 @@
     width: 150px;
     height: 130px;
     position: absolute;
-    top: 520px; 
-    left: 20px;
+    border-radius: 100%;
+    object-fit: cover;
+    bottom: 50px;
+    left: 40px;
 }
 
-.position2{
+.position1{
     width: 150px;
     height: 130px;
     position: absolute;
-    top: 520px; 
-    left: 810px;
+    border-radius: 100%;
+    object-fit: cover;
+    bottom: 50px;
+    left: 1000px;
 }
 
-.position3{
-    width: 120px;
-    height: 80px;
-    position: absolute;
-    top: 540px; 
-    left: 260px;
-}
-
-.position4{
-    width: 120px;
-    height: 80px;
-    position: absolute;
-    top: 540px; 
-    left: 1049px;
+.btn{
+    height: 20px;
+    align-items: flex-end;
 }

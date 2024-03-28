@@ -3,7 +3,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Component, HostListener, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogModule } from '@angular/material/dialog';
 import { MatDialogRef } from '@angular/material/dialog';
-import { Router, RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-vote-show',
@@ -13,6 +13,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './vote-show.component.scss'
 })
 export class VoteShowComponent {
+  
   selectedLeftName: string;
   selectedRightName: string;
   selectedRightPhoto: any;
@@ -31,8 +32,18 @@ export class VoteShowComponent {
   dataarr: any[] = [];
   K: number;
 
+  rightNewELO: number | undefined; // เพิ่มตัวแปร rightNewELO
+  leftNewELO: number | undefined; // เพิ่มตัวแปร LiftNewELO
+  leftExpectation: number | undefined;
+  rightExpectation: number | undefined;
+  rightELO: number | undefined;
+  leftELO: number | undefined;
+  rightActual: number | undefined;
+  leftActual: number | undefined;
+
   constructor(public dialogRef: MatDialogRef<VoteShowComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private router: Router) {
+    @Inject(MAT_DIALOG_DATA) public data: any, private http: HttpClient, private router: Router,
+    private route: ActivatedRoute) {
     this.selectedLeftName = data.selectedLeftName;
     this.selectedRightName = data.selectedRightName;
     this.selectedLeftPhoto = data.selectedLeftPhoto;
@@ -85,10 +96,10 @@ export class VoteShowComponent {
     const Rpost = this.selectedRightPost_id;
     const Rscore = this.RightScore_sum;
 
-    // console.log(Post_id);
-    // console.log(User_id);
-    console.log(Luser);
-    console.log(Ruser);
+    // console.log(Lpost);
+    // console.log(Rpost);
+    // console.log(Luser);
+    // console.log(Ruser);
 
     // console.log("Left User"+this.selectedLeftUser_id);
     // console.log("Left Post"+this.selectedLeftPost_id);
@@ -102,8 +113,6 @@ export class VoteShowComponent {
     this.http.get<any>(url).subscribe(
       (data: any) => {
         pjr = data;
-        this.sendpost(pjr);
-        // console.log(pjr[0].score_sum);
       },
       (error: any) => {
         alert(error.error.message);
@@ -132,6 +141,7 @@ export class VoteShowComponent {
     let Rdata = {
       'score': 0,
     };
+    // console.log(this.LeftScore_sum);
 
     if (typeof this.LeftScore_sum !== 'undefined' && typeof this.RightScore_sum !== 'undefined') {
       let leftELO = this.LeftScore_sum;
@@ -141,8 +151,10 @@ export class VoteShowComponent {
       let leftExpectation = 1 / (1 + Math.pow(10, (rightELO - leftELO) / 400));
       let rightExpectation = 1 / (1 + Math.pow(10, (leftELO - rightELO) / 400));
 
+
+      //ไม่เข้า if นี้
       if (Luser === User_id) {
-        //  console.log("1");
+        console.log("1");
         let leftScore = 1; // กำหนดค่าคะแนนสำหรับฝ่ายทางซ้าย
         let leftActual = 1; // ผลจริงที่ฝ่ายทางซ้ายได้
         let leftNewELO = leftELO + this.K * (leftActual - leftExpectation); // คำนวณคะแนนใหม่ของฝ่ายทางซ้าย
@@ -158,6 +170,15 @@ export class VoteShowComponent {
         Ldata.score = leftNewELO;
         Rdata.score = rightNewELO;
         console.log("Right's new ELO:", rightNewELO);//update post
+
+        this.leftNewELO = leftNewELO; // กำหนดค่า rightNewELO
+        this.rightNewELO = rightNewELO; // กำหนดค่า rightNewELO
+        this.leftExpectation = leftExpectation;
+        this.rightExpectation = rightExpectation;
+        this.rightELO = rightELO;
+        this.leftELO = leftELO;
+        this.rightActual = rightActual;
+        this.leftActual = leftActual;
 
       }
       else if (Ruser === User_id) {
@@ -177,74 +198,76 @@ export class VoteShowComponent {
         rightVoteData.score_sum = rightNewELO;
         Ldata.score = leftNewELO;
         Rdata.score = rightNewELO;
-        console.log("Right's new ELO:", rightNewELO);//update post
+        // console.log("Right's new ELO:", rightNewELO);//update post
+
+        this.leftNewELO = leftNewELO; // กำหนดค่า rightNewELO
+        this.rightNewELO = rightNewELO; // กำหนดค่า rightNewELO
+        this.leftExpectation = leftExpectation;
+        this.rightExpectation = rightExpectation;
+        this.rightELO = rightELO;
+        this.leftELO = leftELO;
+        this.rightActual = rightActual;
+        this.leftActual = leftActual;
+
       }
       // ต่อไปจะเป็นการใช้ค่าความคาดหวังนี้ในการดำเนินการต่อไป
     } else {
-      console.error("Error: LeftScore_sum or RightScore_sum is undefined");
+      // console.error("Error: LeftScore_sum or RightScore_sum is undefined");
     }
 
-    // const urls = "https://adv-node.onrender.com/vote/insert_vote";
-    // this.http.post<any>(urls, leftVoteData,).subscribe(
-    //   (data: any) => {
-    //     // console.log("Left vote inserted:", data);
-    //   },
-    //   (error: any) => {
-    //     alert(error.error.message);
-    //   }
-    // );
+    const urls = "https://adv-node.onrender.com/vote/insert_vote";
+    this.http.post<any>(urls, leftVoteData,).subscribe(
+      (data: any) => {
+        // console.log("Left vote inserted:", data);
+      },
+      (error: any) => {
+        alert(error.error.message);
+      }
+    );
 
-    // this.http.post<any>(urls, rightVoteData).subscribe(
-    //   (data: any) => {
-    //     // console.log("Right vote inserted:", data);
-    //   },
-    //   (error: any) => {
-    //     alert(error.error.message);
-    //   }
-    // );
+    this.http.post<any>(urls, rightVoteData).subscribe(
+      (data: any) => {
+        // console.log("Right vote inserted:", data);
+      },
+      (error: any) => {
+        alert(error.error.message);
+      }
+    );
 
 
 
-    // const urlss = `https://adv-node.onrender.com/post/update_post/${Lpost}`;
+    const urlss = `https://adv-node.onrender.com/post/update_post/${Lpost}`;
     // console.log(Lpost);
-    // this.http.put<any>(urlss, Ldata).subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //   },
-    //   (error: any) => {
-    //     alert(error.error.message);
-    //   }
-    // );
+    this.http.put<any>(urlss, Ldata).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error: any) => {
+        alert(error.error.message);
+      }
+    );
 
-    // const urlsss = `https://adv-node.onrender.com/post/update_post/${Rpost}`;
+    const urlsss = `https://adv-node.onrender.com/post/update_post/${Rpost}`;
     // console.log(Rpost);
-    // const data_score = {
-    //   'score': 1,
-    // };
-    // this.http.put<any>(urlsss, Rdata).subscribe(
-    //   (data: any) => {
-    //     console.log(data);
-    //   },
-    //   (error: any) => {
-    //     alert(error.error.message);
-    //   }
-    // );
+    const data_score = {
+      'score': 1,
+    };
+    this.http.put<any>(urlsss, Rdata).subscribe(
+      (data: any) => {
+        console.log(data);
+      },
+      (error: any) => {
+        alert(error.error.message);
+      }
+    );
 
     // รีเฟรชหน้า main
     this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
-      this.router.navigate([''], { queryParamsHandling: 'preserve' });
+      this.router.navigate(['show'], { queryParamsHandling: 'preserve' });
       // this.dialogRef.close();
+
     });
 
-  }
-  sendpost(pjr: any[]) {
-    // console.log(pjr);
-  }
-  Post_id(arg0: string, Post_id: any) {
-    throw new Error('Method not implemented.');
-  }
-  User_id(arg0: string, User_id: any) {
-    throw new Error('Method not implemented.');
   }
 
 }

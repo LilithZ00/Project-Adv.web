@@ -1,10 +1,9 @@
-<app-headeradmin></app-headeradmin>
+<app-header></app-header>
 <div style="padding-bottom: 40px;">
     <div style="display: grid; place-items: center;">
         <div *ngFor="let index of name">
             <div *ngIf="userId == index.user_id" style="display: flex; justify-content: center; margin-top: -85px;">
                 <img class="img-avatar" src="{{ index.avatar }}" alt="avatar">
-                
             </div>
         </div>
         <div style="text-align: center; display: flex; margin-top: 120px; margin-left: 400px;">

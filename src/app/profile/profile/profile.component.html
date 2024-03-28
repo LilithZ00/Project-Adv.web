@@ -24,7 +24,7 @@
                     <div class="caption-container">
                         <p class="name-caption">{{ index.post_caption }}</p>
                     </div>
-                    <img class="img-in-post"
+                    <img (click)="sendTograp(index.post_id)" class="img-in-post"
                         src="{{ index.post_photo }}"
                         alt="img">
                     <div class="name-vote-score">
@@ -40,3 +40,10 @@
         </div>
     </div>
 </div>
+<!-- <div>
+    <input type="file" name="file" #fileInput>
+    <button (click)="sendFileToServer()">Send File</button>
+</div> -->
+
+
+

@@ -16,23 +16,10 @@
 </head>
 <div class="flex-header">
     <div class="div">
-        <a (click)="sendhome()">
+        <a routerLink="">
             <img class="logo" src="https://i.pinimg.com/736x/6c/24/ca/6c24ca0bb77928acd539845542526994.jpg">
         </a>
         <p style="font-size: 20px;">No.1</p>
-    </div>
-    <div>
-        <div *ngFor="let index of name">
-            <div *ngIf="userId == index.user_id" class="div" style="margin-right: 30px;">
-                <a routerLink="/profile">
-                    <img class="avatar" style="margin-right: 5px;" src="{{ index.avatar }}">
-                </a>
-
-                <p routerLink="/profile" style="margin-left: 5px; cursor: pointer;">{{ index.user_name }}</p>
-            </div>
-
-        </div>
-
     </div>
     <div>
         <div class="dropdown">
@@ -40,11 +27,11 @@
                 menu
             </span>
             <div class="dropdown-content">
-                <a (click)="sendhome()">Home</a>
-                <a (click)="sendprofile()">Profile</a>
-                <a (click)="sendscore()">Score</a>
-                <a routerLink="">Logout</a>
+                <a (click)="homeShow()">Home</a>
+                <a (click)="scoreShow()">Score</a>
+                <a (click)="login()">Login</a>
             </div>
         </div>
     </div>
 </div>
+

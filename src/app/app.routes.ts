@@ -16,20 +16,30 @@ import { ScoreadminComponent } from './admin/scoreadmin/scoreadmin.component';
 import { GrapadminComponent } from './admin/grapadmin/grapadmin.component';
 import { ShowComponent } from './components/show/show.component';
 import { HeaderComponent } from './main/header/header.component';
+import { HeaderadminComponent } from './admin/headeradmin/headeradmin.component';
+import { HeaderrshowComponent } from './components/headerrshow/headerrshow.component';
+import { ScoreShowComponent } from './components/score-show/score-show.component';
+import { GraphShowComponent } from './components/graph-show/graph-show.component';
+import { UserpostComponent } from './main/userpost/userpost.component';
+
 
 export const routes: Routes = [
-  { path: '', component: ShowComponent },
+  { path: 'show', component: ShowComponent },
   { path: 'main/:id', component: MainComponent },
+  { path: 'main/userpost/:id', component: UserpostComponent },
+  { path: 'showScore', component: ScoreShowComponent },
+  { path: 'showGraph/:idP/:str', component: GraphShowComponent },
 
   { path: 'header/:id', component: HeaderComponent },
+  { path: 'headerrshow', component: HeaderrshowComponent},
 
+  { path: 'Headeradmin/:id', component: HeaderadminComponent },
   { path: 'homeadmin/:id', component: HomeadminComponent },
-  { path: 'homeadmin/profileuser', component: ProfileuserComponent },
+  { path: 'profileUser/:id', component: ProfileuserComponent },
+  { path: 'scoreadmin/:id', component: ScoreadminComponent },
+  { path: 'scoreadmin/grapadmin/:id/:idP/:str', component: GrapadminComponent },
 
-  { path: 'scoreadmin', component: ScoreadminComponent },
-  { path: 'scoreadmin/grapadmin', component: GrapadminComponent },
-
-  { path: 'login', component: LoginComponent },
+  { path: '', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
 
   //Profile

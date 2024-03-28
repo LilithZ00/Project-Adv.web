@@ -2,23 +2,21 @@
 <div class="background">
     <div class="card">
         <p class="caption">{{ selectedLeftName }}</p>
-        <img class="img"
-        [src]="selectedLeftPhoto"
-            alt="img">
+        <img class="img" 
+        [src]="selectedLeftPhoto" 
+            alt="img" (click)="profile(selectedLeftUser_id!)">
         <div class="con">
-            <button (click)="openVotePopup('left');" style="font-weight: bold;">VOTE</button>
+            <button  (click)="openVotePopup('left');" style="font-weight: bold;">VOTE</button>
         </div>
-        <p class="count-vote">Vote : 100</p>
     </div>
     
     <div class="card">
         <p class="caption">{{ selectedRightName }}</p>
-        <img class="img"
-        [src]="selectedRightPhoto"
-            alt="img">
+        <img class="img" 
+        [src]="selectedRightPhoto" 
+            alt="img" (click)="profile(selectedRightUser_id!)">
         <div class="con">
             <button (click)="openVotePopup('right')" style="font-weight: bold;">VOTE</button>
         </div>
-        <p class="count-vote">Vote : 100</p>
     </div>
 </div>

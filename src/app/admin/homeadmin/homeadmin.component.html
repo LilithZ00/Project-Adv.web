@@ -1,17 +1,18 @@
 <app-headeradmin></app-headeradmin>
 <div style="padding: 20px;">
-    <div class="card">
-        <div style="display: flex;">
+    <div class="card" >
+        <div *ngFor="let index of name;" style="margin-bottom: 10px;">
+        <div  *ngIf="index.user_type != 'admin'" style="display: flex;" class="user">
             <div style="display: flex; align-items: center;">
-                <p style="padding: 20px;">1</p>
-                <a routerLink="/homeadmin/profileuser" style="cursor: pointer; display: flex; align-items: center;">
+                <p style="padding: 20px;">{{ index.user_id }}</p>
+                <a (click)="profile(index.user_id)" style="cursor: pointer; display: flex; align-items: center;">
                     <img class="img"
-                        src="https://1417094351.rsc.cdn77.org/articles/8571/8570468/thumbnail/large.gif?1"
+                        src="{{ index.avatar }}"
                         alt="">
                 </a>
             </div>
-            <p style="padding: 20px;">user</p>
+            <p style="padding: 20px;">{{index.user_name}}</p>
         </div>
-        <hr>
+        </div>
     </div>
 </div>

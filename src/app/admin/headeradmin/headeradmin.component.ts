@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router,RouterModule } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-headeradmin',
@@ -9,5 +9,22 @@ import { Router,RouterModule } from '@angular/router';
   styleUrl: './headeradmin.component.scss'
 })
 export class HeaderadminComponent {
-  constructor(private router: Router) {}
+ 
+
+  userId: any;
+  constructor(private router: Router, private route: ActivatedRoute) {
+
+    this.route.params.subscribe(params => {
+      this.userId = params['id'];
+      // console.log(this.userId);
+    });
+  }
+  scoreadmin() {
+    this.router.navigate(['/Headeradmin', this.userId]);
+    this.router.navigate(['/scoreadmin', this.userId]);
+  }
+  homeadmin() {
+    this.router.navigate(['/Headeradmin', this.userId]);
+    this.router.navigate(['/homeadmin', this.userId]);
+  }
 }

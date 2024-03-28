@@ -5,7 +5,7 @@
     margin-top: 100px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
     width: 90%; /* ความกว้างของการ์ดเป็น 90% ของพื้นที่ตรงกลาง */
-        max-width: 600px; /* สูงสุดไม่เกิน 600px */
+        max-width: 900px; /* สูงสุดไม่เกิน 600px */
         margin: 0 auto; /* จัดการความกว้างตรงกลาง */
         max-height: 600px; /* ปรับความสูงสูงสุดของการ์ดตามที่ต้องการ */
         overflow-y: auto;
@@ -41,4 +41,19 @@
 .score {
     font-size: 1.2rem;
     font-weight: bold;
+    margin: 50px;
+}
+
+.up{
+    width: 15px;
+    height: 15px;
+}
+
+.down{
+    width: 15px;
+    height: 15px;
+}
+
+.pre{
+    font-size: 40px;
 }

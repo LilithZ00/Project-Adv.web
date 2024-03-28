@@ -1,15 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { HeaderComponent } from '../../main/header/header.component';
 import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Observable, map } from 'rxjs';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
   standalone: true,
-  imports: [HeaderComponent, RouterModule, HttpClientModule, CommonModule],
+  imports: [HeaderComponent, RouterModule, HttpClientModule, CommonModule, FormsModule],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.scss'
 })
@@ -27,7 +28,7 @@ export class ProfileComponent {
         //   this.userId = user.user_id; // Update userId to the matched user's id
         // }
         this.name = data;
-        console.log(this.name);
+        // console.log(this.name);
       },
       (error: any) => {
         console.log(error);
@@ -61,18 +62,48 @@ export class ProfileComponent {
         // นำทางไปยังหน้าเพิ่มโพสท์
         this.router.navigate(['/header', this.userId]);
         this.router.navigate(['/profile/add', this.userId]);
-      // console.log(postCount);
+        // console.log(postCount);
       }
     });
   }
-  
+
   send() {
     this.router.navigate(['/header', this.userId]);
     this.router.navigate(['profile/editprofile', this.userId]);
   }
 
-  sendpost(idP: number){
+  sendpost(idP: number) {
     this.router.navigate(['/header', this.userId]);
     this.router.navigate(['profile/editpost', this.userId, idP]);
+  }
+
+  strs: String = 'Today';
+  sendTograp(idP: number) {
+    this.router.navigate(['/header', this.userId]);
+    this.router.navigate(['/score/grap', this.userId, idP, this.strs]);
+  }
+
+
+  @ViewChild('fileInput') fileInput!: any;
+
+  sendFileToServer() {
+    const fileInputElement = this.fileInput.nativeElement as HTMLInputElement;
+    const file: File = (fileInputElement.files as FileList)[0];
+
+    const formData = new FormData();
+    formData.append('file', file);
+
+    const url = 'http://localhost:3000/upload';
+
+    this.http.post(url, formData).subscribe(
+      (response) => {
+        console.log('File uploaded successfully', response);
+        // ทำอย่างอื่นตามที่ต้องการหลังจากอัปโหลดไฟล์เสร็จสมบูรณ์
+      },
+      (error) => {
+        console.error('Error uploading file', error);
+        // จัดการข้อผิดพลาดที่เกิดขึ้นในการอัปโหลดไฟล์
+      }
+    );
   }
 }

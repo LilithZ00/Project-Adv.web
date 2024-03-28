@@ -1,4 +1,4 @@
-<app-header></app-header>
+<app-headerrshow></app-headerrshow>
 <div class="background">
     <div class="card">
         <p class="caption">{{ selectedLeftName }}</p>
@@ -6,9 +6,8 @@
         [src]="selectedLeftPhoto"
             alt="img">
         <div class="con">
-            <button (click)="showAlert()" style="font-weight: bold;">VOTE</button>
+            <button (click)="showVoet('left')" style="font-weight: bold;">VOTE</button>
         </div>
-        <p class="count-vote">Vote : 100</p>
     </div>
     
     <div class="card">
@@ -17,8 +16,7 @@
         [src]="selectedRightPhoto"
             alt="img">
         <div class="con">
-            <button (click)="showAlert()" style="font-weight: bold;">VOTE</button>
+            <button (click)="showVoet('right')" style="font-weight: bold;">VOTE</button>
         </div>
-        <p class="count-vote">Vote : 100</p>
     </div>
 </div>

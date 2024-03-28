@@ -22,7 +22,7 @@ export class EditpostComponent {
     this.routers.params.subscribe(params => {
       this.userId = params['id'];
       this.idP = params['idP'];
-      console.log(this.userId,this.idP);
+      // console.log(this.userId,this.idP);
     });
     const url = `https://adv-node.onrender.com/post/${this.idP}`;
     this.http.get<any>(url).subscribe(
@@ -48,7 +48,7 @@ export class EditpostComponent {
     const urls = `https://adv-node.onrender.com/post/update_post/${id}`;
     this.http.put<any>(urls, data).subscribe(
       (data: any) => {
-        alert('kk');
+        alert('เปลี่ยนรูปสำเร็จ');
         // window.location.reload(); // รีเฟรชหน้าเว็บ
         this.router.navigate(['/header', this.userId]);
         this.router.navigate(['/Profile', this.userId]);

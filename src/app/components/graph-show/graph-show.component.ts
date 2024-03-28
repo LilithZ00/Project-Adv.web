@@ -1,20 +1,19 @@
-import { Component, OnInit } from '@angular/core';
-import { HeaderComponent } from "../../main/header/header.component";
-import { ActivatedRoute, Router, RouterModule } from '@angular/router';
-import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Component } from '@angular/core';
+import { HeaderrshowComponent } from "../headerrshow/headerrshow.component";
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import Chart from 'chart.js/auto';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Chart } from 'chart.js';
 
 @Component({
-    selector: 'app-grap',
+    selector: 'app-graph-show',
     standalone: true,
-    templateUrl: './grap.component.html',
-    styleUrl: './grap.component.scss',
-    imports: [HeaderComponent, RouterModule, CommonModule, HttpClientModule],
-
+    templateUrl: './graph-show.component.html',
+    styleUrl: './graph-show.component.scss',
+    imports: [HeaderrshowComponent, RouterModule, CommonModule, HttpClientModule]
 })
-export class GrapComponent {
-    userId: any;
+export class GraphShowComponent {
+    // userId: any;
     idP: any;
     datas: any;
 
@@ -25,7 +24,7 @@ export class GrapComponent {
 
     constructor(private router: ActivatedRoute, private http: HttpClient) {
         this.router.params.subscribe(params => {
-            this.userId = params['id'];
+            // this.userId = params['id'];
             this.idP = params['idPT'];
             this.str = params['str'];
             // console.log(this.userId);
@@ -137,5 +136,3 @@ export class GrapComponent {
 
 
 }
-
-

@@ -2,10 +2,10 @@
 <div style="padding: 20px; display: flex; justify-content: center;">
     <div class="card" style="text-align: center;">
         <div *ngFor="let index of name" style="display: flex;">
-            <div *ngIf="userId == index.user_id">
+            <div>
                 <img class="img-avatar"
                     src="{{ index.avatar }}" alt="avatar">
-                <button class="btn" style="display: block; margin: 10px auto;">Confirm</button>
+                <button (click)="sendID(index.avatar_id)" class="btn" style="display: block; margin: 10px auto;">Confirm</button>
             </div>
         </div>
     </div>

@@ -4,8 +4,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AvataPopupComponent } from '../../avata-popup/avata-popup/avata-popup.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-
-
+import { sha256 } from 'js-sha256'; // Import sha256 function from 'js-sha256' module
 
 @Component({
   selector: 'app-register',
@@ -30,6 +29,8 @@ export class RegisterComponent {
   }
 
   async new() {
+    // const hashedPassword = sha256(this.password); // Hash the password using sha256
+    //   console.log(hashedPassword);
     if (!this.username || !this.email || !this.password || !this.confirmpassword) {
       alert("โปรดกรอกข้อมูลให้ครบทุกช่อง");
       return;
@@ -38,10 +39,12 @@ export class RegisterComponent {
     if (this.password !== this.confirmpassword) {
       alert("รหัสผ่านไม่ตรงกัน")
     } else {
+      const hashedPassword = sha256(this.password); // Hash the password using sha256
+      console.log(hashedPassword);
       const body = {
         'user_name': this.username,
         'user_email': this.email,
-        'user_password': this.password,
+        'user_password': hashedPassword, // Store hashed password in the database
         'user_type': 'user',
         'avatar_id': "1"
       };
@@ -51,7 +54,7 @@ export class RegisterComponent {
         (data: any) => {
           // console.log(data);
           alert("สมัครสำเร็จ");
-          this.router.navigate(['/login']); 
+          this.router.navigate(['']); 
         },
         (error: any) => {
           // console.log(error);

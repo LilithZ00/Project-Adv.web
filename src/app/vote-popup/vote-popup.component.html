@@ -1,38 +1,31 @@
 <div class="container">
-    <div>
-        <p class="namehead">Calculate</p>
-    </div>
-    <div style="display: flex;">
+    <div class="card" >
         <div *ngIf="showWinImage">
             <img class="position" src="https://media1.giphy.com/media/SHzl9RryJ4klFthKzD/200.gif" alt="win">
         </div>
-        <div *ngIf="showLoseImage">
-            <img class="position3" src="https://cdn.discordapp.com/attachments/1160973369261437059/1212232788707770438/1389680-middle-Photoroom.png-Photoroom.png?ex=65f116c3&is=65dea1c3&hm=a262817aacf31f6f0d3bfb60f60990f4b1fa933fc328fcb57c333e02662f5534&" alt="lose">
-        </div>
-        <div class="card">
-            <p>{{ selectedLeftName }}</p>
-            <img class="img" src="{{ selectedLeftPhoto }}" alt="img">
-            <p>{{ selectedLeftPost_id }}</p>
-            <p>{{ selectedLeftUser_id }}</p>
-        </div>
+        <p>{{ selectedLeftName }}</p>
+        <img class="img" src="{{ selectedLeftPhoto }}" alt="img">
+        <!-- Display ELO Rating -->
+        <p>Left ELO Rating: {{ leftNewELO | number: '1.0-0' }}</p>
+        <!-- Display calculation method for LeftScore_sum -->
+        <p>Calculate:</p>
+        <p>{{ leftExpectation }} = 1 / (1 + 10^({{ rightELO }} - {{ leftELO }}) / 400)</p>
+        <p>{{ leftNewELO }} = {{ leftELO }} + {{ K }} * ({{ leftActual }} - {{ leftExpectation }})</p>
+    </div>
+    <!-- <button class="btn" (click)="back()" >Back</button> -->
+    <div class="card">
         <div>
-            <img class="imgvs"
-                src="https://cdn.discordapp.com/attachments/1160973369261437059/1212341417246990416/21195084-contre-signe-dans-pixel-art-style-vectoriel-Photoroom.png-Photoroom.png?ex=65f17bee&is=65df06ee&hm=494ae55f474148caffa9661f416fb24075a8ec3a7b72c6dbedb255776452fabf&"
-                alt="vs">
-                <!-- <button (click)="sendVote()">OK</button> -->
-
+            <div *ngIf="showLoseImage">
+                <img class="position1" src="https://media1.giphy.com/media/SHzl9RryJ4klFthKzD/200.gif" alt="win">
+            </div>
         </div>
-        <div *ngIf="showLoseImage">
-            <img class="position2" src="https://media1.giphy.com/media/SHzl9RryJ4klFthKzD/200.gif" alt="win">
-        </div>
-        <div *ngIf="showWinImage">
-            <img class="position4" src="https://cdn.discordapp.com/attachments/1160973369261437059/1212232788707770438/1389680-middle-Photoroom.png-Photoroom.png?ex=65f116c3&is=65dea1c3&hm=a262817aacf31f6f0d3bfb60f60990f4b1fa933fc328fcb57c333e02662f5534&" alt="lose">
-        </div>
-        <div class="card">
-            <p>{{ selectedRightName }}</p>
-            <img class="img" src="{{ selectedRightPhoto }}" alt="img">
-            <p>{{selectedRightPost_id}}</p>
-            <p>{{selectedRightUser_id}}</p>
-        </div>
+        <p>{{ selectedRightName }}</p>
+        <img class="img" src="{{ selectedRightPhoto }}" alt="img">
+        <!-- Display ELO Rating -->
+        <p>Right ELO Rating: {{ rightNewELO | number: '1.0-0' }}</p>
+        <!-- Display calculation method for RightScore_sum -->
+        <p>Calculate:</p>
+        <p>{{ rightExpectation }} = 1 / (1 + 10^({{ leftELO }} - {{ rightELO }}) / 400)</p>
+        <p>{{ rightNewELO }} = {{ rightELO }} + {{ K }} * ({{ rightActual }} - {{ rightExpectation }})</p>
     </div>
 </div>
